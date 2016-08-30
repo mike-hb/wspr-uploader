@@ -1,4 +1,28 @@
 #!/usr/bin/python
+'''
+This module does prepare and upload the ALL_WSPR.TXT-format to the influxdb-server
+
+Author : PA7T Clemens Heese
+         DK5HH Michael Hartje DK5HH at darc.de
+
+Installation: 
+Prepare the python installation depending on what python version you are 
+using (2/3)
+we need to add the modules in addition to a standeard python installation
+influxdb
+pyhamtools
+geohash
+You can install these modules with for pythoon 2 with
+pip2 install modulename
+or for python 3 with
+pip3 install modulename
+
+check the installtion in python console
+import modulename
+(no answer is good news.)
+
+'''
+
 import re
 from time import gmtime, strftime, strptime
 from influxdb import InfluxDBClient
@@ -7,10 +31,10 @@ from pyhamtools.locator import locator_to_latlong, calculate_distance, calculate
 import geohash
 
 
-client = InfluxDBClient('127.0.0.1', 8087, 'dk5hh', 'Smid485olle', 'wspr')
+client = InfluxDBClient('thehost.home.net', 8087, 'user_name', 'secret_password', 'wspr')
 
-wspr_reporter = 'PA7T'
-wspr_loc_reporter = 'JO22FD'
+wspr_reporter = 'mycall'
+wspr_loc_reporter = 'maidenhead_locater_6_letter'
 
 with open('wspr_spots.txt') as f:
 	for in_str in f:
